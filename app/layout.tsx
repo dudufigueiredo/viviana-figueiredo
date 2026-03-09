@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { DM_Serif_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/SiteShell";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: "400",
 });
 
 const inter = Inter({
@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Viviana Figueiredo — Decoração de Interiores",
   description:
     "Decoradora de interiores há mais de 20 anos criando espaços com alma.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${cormorant.variable} ${inter.variable}`}>
+      <body className={`${dmSerifDisplay.variable} ${inter.variable}`}>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

@@ -30,7 +30,7 @@ export default function Nav() {
         <nav className="max-w-7xl mx-auto px-6 py-7 flex items-center justify-between">
           <Link
             href="/"
-            className={`font-serif text-xl tracking-wide font-semibold ${textColor} hover:opacity-60 transition-opacity ease-smooth`}
+            className={`font-serif text-xl tracking-wide font-medium ${textColor} hover:opacity-60 transition-opacity ease-smooth`}
           >
             Viviana Figueiredo
           </Link>
