@@ -10,11 +10,6 @@ export default defineType({
       title: "Instagram URL",
       type: "url",
     }),
-    defineField({
-      name: "contactEmail",
-      title: "E-mail de contato",
-      type: "string",
-    }),
   ],
   preview: {
     prepare() {

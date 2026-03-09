@@ -3,17 +3,26 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { client } from "@/sanity/lib/client";
+import { siteSettingsQuery } from "@/sanity/lib/queries";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/sobre", label: "Sobre" },
-  { href: "/contato", label: "Contato" },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
   const isProject = pathname.startsWith("/projetos/");
   const [open, setOpen] = useState(false);
+  const [instagramUrl, setInstagramUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    client
+      .fetch(siteSettingsQuery)
+      .then((s) => setInstagramUrl(s?.instagramUrl ?? null))
+      .catch(() => null);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
@@ -55,7 +64,7 @@ export default function Nav() {
           {/* Right: social + mobile hamburger */}
           <div className="flex items-center justify-end flex-1 gap-6">
             <a
-              href="https://www.instagram.com/vivianafigueiredo"
+              href={instagramUrl ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -113,7 +122,7 @@ export default function Nav() {
             </Link>
           ))}
           <a
-            href="https://www.instagram.com/vivianafigueiredo"
+            href={instagramUrl ?? "#"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
