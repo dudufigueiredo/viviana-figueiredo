@@ -4,12 +4,14 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
-  const isAdmin = usePathname().startsWith("/admin");
-  if (isAdmin) return <>{children}</>;
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return <>{children}</>;
   return (
     <>
       <Nav />
-      <main className="pt-[73px]">{children}</main>
+      <main key={pathname} className="pt-[73px] page-transition">
+        {children}
+      </main>
       <Footer />
     </>
   );

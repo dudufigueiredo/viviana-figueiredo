@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];
@@ -27,16 +28,9 @@ export default function Nav() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 ${bg}`}>
-        <nav className="max-w-7xl mx-auto px-6 py-7 flex items-center justify-between">
-          <Link
-            href="/"
-            className={`font-serif text-xl tracking-wide font-medium ${textColor} hover:opacity-60 transition-opacity ease-smooth`}
-          >
-            Viviana Figueiredo
-          </Link>
-
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+        <nav className="max-w-7xl mx-auto px-6 py-7 flex items-center justify-between relative">
+          {/* Left: nav links */}
+          <div className="hidden md:flex items-center gap-8 flex-1">
             {links.map(({ href, label }) => (
               <Link
                 key={href}
@@ -46,12 +40,26 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
+          </div>
+
+          {/* Center: logo */}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Link
+              href="/"
+              className={`font-serif text-lg tracking-wide font-semibold ${textColor} hover:opacity-60 transition-opacity ease-smooth whitespace-nowrap`}
+            >
+              Viviana Figueiredo
+            </Link>
+          </div>
+
+          {/* Right: social + mobile hamburger */}
+          <div className="flex items-center justify-end flex-1 gap-6">
             <a
               href="https://www.instagram.com/vivianafigueiredo"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className={`-m-2 p-2 ${textColor} hover:opacity-60 transition-opacity ease-smooth`}
+              className={`hidden md:block -m-2 p-2 ${textColor} hover:opacity-60 transition-opacity ease-smooth`}
             >
               <svg
                 width="18"
@@ -68,26 +76,26 @@ export default function Nav() {
                 <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
               </svg>
             </a>
-          </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className={`md:hidden -m-2 p-2 ${textColor} hover:opacity-60 transition-opacity`}
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            ) : (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="3" y1="8" x2="21" y2="8" />
-                <line x1="3" y1="16" x2="21" y2="16" />
-              </svg>
-            )}
-          </button>
+            {/* Mobile hamburger */}
+            <button
+              className={`md:hidden -m-2 p-2 ${textColor} hover:opacity-60 transition-opacity`}
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <line x1="3" y1="8" x2="21" y2="8" />
+                  <line x1="3" y1="16" x2="21" y2="16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </nav>
       </header>
 

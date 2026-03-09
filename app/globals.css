@@ -9,6 +9,22 @@
   --ease-smooth: linear(0, 0.012 0.9%, 0.05 2%, 0.411 9.2%, 0.517 11.8%, 0.611 14.6%, 0.694 17.7%, 0.765 21.1%, 0.824 24.8%, 0.872 28.9%, 0.91 33.4%, 0.939 38.4%, 0.977 50.9%, 0.994 68.4%, 1);
 }
 
+/* Page transition */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 /* Lightbox */
 .yarl__root {
   --yarl__color_backdrop: rgba(0, 0, 0, 0.7);

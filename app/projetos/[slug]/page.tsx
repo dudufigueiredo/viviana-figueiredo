@@ -70,7 +70,7 @@ export default async function ProjectPage({
       </div>
 
       {project.gallery && project.gallery.length > 0 && (
-        <div className="max-w-[1366px] mx-auto px-5">
+        <div className="max-w-[1280px] mx-auto px-5">
           <ProjectGallery
             images={(project.gallery ?? []).map((image, i) => ({
               src: urlFor(image).width(2400).url(),
