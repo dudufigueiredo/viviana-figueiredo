@@ -1,3 +1,4 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -5,6 +6,7 @@ export default defineType({
   title: "Projeto",
   type: "document",
   fields: [
+    orderRankField({ type: "project" }),
     defineField({
       name: "title",
       title: "Título",
@@ -42,12 +44,6 @@ export default defineType({
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
     }),
-    defineField({
-      name: "order",
-      title: "Ordem",
-      type: "number",
-      initialValue: 0,
-    }),
   ],
   preview: {
     select: {
@@ -56,11 +52,5 @@ export default defineType({
       media: "coverImage",
     },
   },
-  orderings: [
-    {
-      title: "Ordem manual",
-      name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }],
-    },
-  ],
+  orderings: [orderRankOrdering],
 });
